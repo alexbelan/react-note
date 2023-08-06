@@ -6,15 +6,15 @@ import { marked } from "marked";
 import useChangeNote from "../../../hooks/useChangeNote";
 import useGetNote from "../../../hooks/useGetNote";
 import Header from "./Header";
-import styles from './styles.module.scss'
 import { useLocation } from "react-router";
 import useDebounce from "../../../hooks/useDebounce";
 import Error from "../../../pages/Error";
+import './styles.scss'
 
 export const Workspace = () => {
     const {note} = useData()
     const location = useLocation()
-    const [text, setText] = useState<string>(!!note?.body ? note?.body : '')
+    const [text, setText] = useState<string>(note?.body ? note?.body : '')
     const {error: errorChangeNote, updateData} = useChangeNote(location.pathname)
     const {isLoading, error} = useGetNote(location.pathname)
     const [isEdit, setIsEdit] = useState(false)
@@ -23,7 +23,7 @@ export const Workspace = () => {
         if(typeof note?.body === 'string') {
             setText(note?.body)
         }
-    }, [note?.id])
+    }, [note?.id, note?.body])
 
   const handleChangeText = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
       setText(event.target.value)
@@ -48,7 +48,7 @@ export const Workspace = () => {
           }}>
             {isEdit ? (
               <textarea
-                className={styles.edit}
+                className='edit'
                 onChange={handleChangeText}
               >
                 {text}

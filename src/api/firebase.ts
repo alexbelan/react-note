@@ -29,7 +29,6 @@ export const getNotes = async (limitNum: number, lastVisible: unknown | null) =>
         const docRef: QuerySnapshot<DocumentData> = await getDocs(queryRes)
         return docRef
     } catch (error) {
-        
+        console.error(error)
     }
-    
 }

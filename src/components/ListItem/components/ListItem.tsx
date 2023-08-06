@@ -10,7 +10,7 @@ const ListItemNote = forwardRef(({onClick, title}: ListItemProps, ref: Ref<HTMLL
 
     const titleReplace = useMemo(() => {
         return title ? title.replace(/[#*]/g, '').substring(0, 30) + (title.length > 30 ? '...' : '') : 'New note...'
-    }, [])
+    }, [title])
 
     return (
         <ListItem 

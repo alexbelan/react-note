@@ -12,11 +12,11 @@ const useTimeout = (callback: () => void, delay: number) => {
         timeoutRef.current = setTimeout(() => callbackRef.current(), delay)
     }, [ delay ])
 
-    const clear = () => {
+    const clear = useCallback(() => {
         if(timeoutRef.current) {
             clearTimeout(timeoutRef.current)
         }
-    }
+    }, [])
 
     const reset = useCallback(() => {
         clear()

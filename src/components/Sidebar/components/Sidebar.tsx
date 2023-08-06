@@ -42,7 +42,6 @@ const Sidebar = () => {
             {!error && notes && (
                 <List>
                     {notes.map((item: Note, index: number) => {
-                        const date: Date = typeof item.datetime === 'string' ? new Date(item.datetime) : new Date(item.datetime.nanoseconds)
                         if(notes.length === index + 1) {
                             return (
                                 <>

@@ -16,16 +16,16 @@ const useGetNotes = (page: number) => {
             setIsLoading(true)
             const docRef = await getNotes(25, lastVisible)
             const docsArray: Note | DocumentData = []
-            docRef.forEach(doc => {
+            docRef?.forEach(doc => {
                 docsArray.push({id: doc.id, ...doc.data()})
             })
-            await docsArray.forEach((item: Note) => {
+            await docsArray?.forEach((item: Note) => {
                 if('body' in item) {
                     setNotes((prev: Note[]) => [...prev, item])
                 }
             })
-            setLastVisible(docRef.docs[docRef.docs.length-1])
-            setHasMore(docsArray.length > 0)
+            setLastVisible(docRef?.docs[docRef?.docs?.length-1])
+            setHasMore(docsArray?.length > 0)
             setIsLoading(false)
         } catch (error) {
             console.error(error)
@@ -35,9 +35,8 @@ const useGetNotes = (page: number) => {
     }, [lastVisible])
     
     useEffect(() => {
-        console.log('getData')
         getData()
-    }, [page])
+    }, [page, getData])
     
     return {
         isLoading,

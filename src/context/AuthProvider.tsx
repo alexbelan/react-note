@@ -4,15 +4,15 @@ import { auth } from '../utils/firebase'
 import { PropsChildren } from "../interfaces/reactComponents";
 
 interface ProviderValue {
-    user: User | null,
-    signin: <T>(email: string, password: string, callbeck: () => void) => Promise<T>,
-    signout: (callback: () => void) => void
+    user?: User | null,
+    signin?: <T>(email: string, password: string, callbeck: () => void) => Promise<T>,
+    signout?: (callback: () => void) => void
 }
 
-const AuthContext = createContext({
+const AuthContext = createContext<ProviderValue>({
     user: null,
-    signin: (email: string, password: string, callbeck: () => void) => {},
-    signout: (callback: () => void) => {}
+    signin: () => new Promise(() => {}),
+    signout: () => {}
 })
 
 export const useAuth = () => {

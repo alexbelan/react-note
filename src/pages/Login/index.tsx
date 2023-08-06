@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import { useAuth } from "../../context/AuthProvider"
 import { useLocation, useNavigate } from "react-router"
 import Form from "./components/Form"
@@ -8,11 +8,15 @@ const Login = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    useEffect(() => {
+    const chack = useCallback(() => {
         if(auth.user) {
             navigate(location.state?.from || '/')
         }
-    }, [])
+    }, [auth.user, navigate, location.state?.from])
+
+    useEffect(() => {
+        chack()
+    }, [chack])
 
 
     return (<Form />)

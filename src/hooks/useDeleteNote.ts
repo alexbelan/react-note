@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useData } from "../context/DataProvider"
 import { deleteNote } from "../api/firebase"
 import { Note } from "../interfaces/notes"

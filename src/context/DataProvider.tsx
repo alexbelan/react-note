@@ -21,9 +21,7 @@ const DataContext = createContext<ProviderValue>({
     isLoading: false
 })
 
-export const useData = () => {
-    return useContext(DataContext)
-}
+export const useData = () => useContext(DataContext)
 
 export const DataProvider = ({children}: PropsChildren) => {
     const [notes, setNotes] = useState<Note[]>([])

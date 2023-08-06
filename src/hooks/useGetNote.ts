@@ -17,13 +17,13 @@ const useGetNote = (id?: string) => {
             setError(true)
             setIsLoading(false)
         }
-    }, [])
+    }, [setNote])
     
     useEffect(() => {
         if(typeof id === 'string') {
             getData(id)
         }
-    }, [id])
+    }, [id, getData])
     
     return {
         isLoading,

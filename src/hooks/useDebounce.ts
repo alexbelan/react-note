@@ -5,7 +5,7 @@ const useDebounce = <T>(callback: () => void, delay: number, dependencies: Array
     const {set, clear} = useTimeout(callback, delay)
 
     useEffect(set, [...dependencies, set])
-    useEffect(clear, [])
+    useEffect(clear, [clear])
 }
 
 export default useDebounce

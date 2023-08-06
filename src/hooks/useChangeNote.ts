@@ -22,7 +22,7 @@ const useChangeNote = (id: string) => {
             setError(true)
             setIsLoading(false)
         }
-    }, [id])
+    }, [id, setNote])
     
     return {
         isLoading,

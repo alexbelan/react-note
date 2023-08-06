@@ -1,6 +1,6 @@
 import { TextField, Box, List, ListItem, ListItemText } from "@mui/material"
 import parse from 'html-react-parser'
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 import { useData } from "../../../context/DataProvider"
 import { marked } from "marked"
 import useDebounce from "../../../hooks/useDebounce"
@@ -11,7 +11,7 @@ const SearchBox = () => {
     const [searchItems, setSearchItems] = useState<string[]>([])
 
     const listParagrapg: string[] = useMemo(() => {
-        if(!!note?.body) {
+        if(note?.body) {
             const parseData: string | JSX.Element | JSX.Element[] = parse(marked.parse(note.body))
             return Array.isArray(parseData) ? parseData.filter(element => typeof element !== 'string')
                 .map(item => typeof item.props.children === 'string' ? item.props.children : item.props.children.props.children) : []
@@ -22,7 +22,7 @@ const SearchBox = () => {
 
     const hundlerSearch = (value: string) => {
         const result = listParagrapg.filter((element, index) => element.includes(value) && index < 5)
-        setSearchItems(!!value ? result : [])
+        setSearchItems(value ? result : [])
     }
 
     useDebounce(() => {
